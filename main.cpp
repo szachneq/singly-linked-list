@@ -1,6 +1,11 @@
 #include <iostream>
+#include "sequence.h"
+
+using namespace std;
 
 int main(int, char**) {
-    std::cout << "Hello, world!\n";
+    cout << "Hello, world!\n";
+    Sequence<int, int> test;
+    test.print();
     return 0;
 }
