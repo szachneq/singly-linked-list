@@ -7,6 +7,14 @@ template <typename Key, typename Info>
 class Sequence {
     public:
 
+    // Public struct used to return data stored in the list
+    struct Item {
+        Key key;
+        Info info;
+
+        Item(Key k, Info i) : key(k), info(i) {}
+    };
+
     Sequence();
 
     Sequence(const Sequence& src);
@@ -15,20 +23,29 @@ class Sequence {
 
     Sequence& operator=(const Sequence& src);
 
-    unsigned int size() const;
+    int size() const;
 
     void push_front(const Key& key, const Info& info); // keys are not unique!
 
     bool pop_front();
 
-    void print();
+    void print() const;
+
+    const Item& get_item(int index) const;
+
+    Item& get_item_by_key(Key key);
 
     private:
 
+    // Private struct used to store the data
     struct Node {
-        Key key;
-        Info info;
+        Item *item;
+        // Key key;
+        // Info info;
         Node *next;
+
+        // Node(Key k, Info i, Node *n = nullptr) : key(k), info(i), next(n) {}
+        Node(Item *i, Node *n = nullptr) : item(i), next(n) {}
     };
 
     Node *head = nullptr;
@@ -41,5 +58,8 @@ class Sequence {
     void push_end(const Key& key, const Info& info);
 
 };
+
+template <typename Key, typename Info>
+Sequence<Key, Info> join(const Sequence<Key, Info>& left, const Sequence<Key, Info>& right, Info (*aggregate)(const Info& left, const Info& right));
 
 #include "sequence.tpp"

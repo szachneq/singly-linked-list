@@ -1,4 +1,4 @@
-# 21Z-EADS-TASK1-Szachno-Jan
+# Singly Linked List
 
 This project represents singly linked list
 
